@@ -1,15 +1,20 @@
-//
-//  main.cpp
-//  lab2
-//
-//  Created by Мария Забродина on 22/02/2020.
-//  Copyright © 2020 Мария Забродина. All rights reserved.
-//
-
 #include <iostream>
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;pizdez
-}
+using namespace std;
+class Vector{
+    double *r;
+    int n;
+public:
+    Vector(){
+        r=nullptr;
+        n=0;
+    }
+    Vector(double *r, int n){
+        this->n=n;
+        this->r=new double[n];
+        for (int i=0;i<n;i++) this->r[i]=r[i];
+    }
+    Vector(const Vector & R){
+        n=R.n;
+        r=new double[n];
+    }
+};
