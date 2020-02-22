@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 class Vector{
     double *r;
@@ -16,5 +17,51 @@ public:
     Vector(const Vector & R){
         n=R.n;
         r=new double[n];
+        for (int i=0;i<n;i++) r[i]=R.r[i];
     }
+    Vector(Vector&& R){
+        R.r=nullptr;
+        R.n=0;
+    }
+    ~Vector(){
+        if (r!=nullptr) delete[]r;
+    }
+    double & operator[](int num){
+        return r[num];
+    }
+    Vector & operator=(Vector& R1){
+        n=R1.n;
+        if (r!=nullptr) delete[] r;
+        r=new double[n];
+        for (int i=0;i<n;i++){
+            r[i]=R1.r[i];
+        }
+        return *this;
+    }
+    friend ostream & operator<<(ostream&out,Vector& R2);
+    friend istream & operator>>(istream&in,Vector& R2);
+    friend Vector & operator*(Vector& R3,double k);
 };
+Vector & operator*(Vector& R3,double k){
+    double *f=new double[R3.n];
+    for (int i=0;i<R3.n;i++){
+        f[i]=k*R3.r[i];
+    }
+    Vector *New=new Vector(f,R3.n);
+    delete[] f;
+    return *New;
+}
+ostream & operator<<(ostream&out,Vector& R2){
+    for (int i=0;i<R2.n;i++){
+        out <<R2.r[i] <<" ";
+    }
+    out <<endl;
+    return out;
+}
+istream & operator>>(istream&in,Vector& R2){
+    in>>R2.n;
+    for (int i=0;i<R2.n;i++){
+        in >>R2.r[i];
+    }
+    return in;
+}
