@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 using namespace std;
 class Vector{
     double *r;
@@ -65,3 +66,29 @@ istream & operator>>(istream&in,Vector& R2){
     }
     return in;
 }
+int main(){
+    int n;
+    ifstream fin("Input.txt");
+    if (!fin){
+            cout << endl<< "Error, file not found"<< endl;
+            return 1;
+       }
+    fin>>n;
+    double *k=new double[n];
+    for (int i=0;i<n;i++){
+        fin>>k[i];
+    }
+    fin.close();
+    ofstream fout("Output.txt");
+    Vector N(k,n);
+    for (int i=0;i<n;i++){
+        fout <<N[i];
+    }
+    fout <<endl;
+    Vector N1;
+    N1=operator*(N1,((rand()%1000)/10));
+    fout <<N1;
+    fout.close();
+    return 0;
+}
+
