@@ -1,48 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include "Vector.h"
 using namespace std;
-class Vector{
-    double *r;
-    int n;
-public:
-    Vector(){
-        r=nullptr;
-        n=0;
-    }
-    Vector(double *r, int n){
-        this->n=n;
-        this->r=new double[n];
-        for (int i=0;i<n;i++) this->r[i]=r[i];
-    }
-    Vector(const Vector & R){
-        n=R.n;
-        r=new double[n];
-        for (int i=0;i<n;i++) r[i]=R.r[i];
-    }
-    Vector(Vector&& R){
-        R.r=nullptr;
-        R.n=0;
-    }
-    ~Vector(){
-        if (r!=nullptr) delete[]r;
-    }
-    double & operator[](int num){
-        return r[num];
-    }
-    Vector & operator=(Vector& R1){
-        n=R1.n;
-        if (r!=nullptr) delete[] r;
-        r=new double[n];
-        for (int i=0;i<n;i++){
-            r[i]=R1.r[i];
-        }
-        return *this;
-    }
-    friend ostream & operator<<(ostream&out,Vector& R2);
-    friend istream & operator>>(istream&in,Vector& R2);
-    friend Vector & operator*(Vector& R3,double k);
-};
 Vector & operator*(Vector& R3,double k){
     double *f=new double[R3.n];
     for (int i=0;i<R3.n;i++){
