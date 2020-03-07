@@ -46,7 +46,7 @@ int main(){
     }
     fout <<endl;
     Vector N1;
-    N1=operator*(N1,((rand()%1000)/10));
+    N1=operator*(N,((rand()%1000)/10));
     fout <<N1;
     fout.close();
     return 0;
