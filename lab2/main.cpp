@@ -28,7 +28,7 @@ istream & operator>>(istream&in,Vector& R2){
 }
 int main(){
     int n;
-    ifstream fin("/Users/mariazabrodina/Documents/2 семестр/lab2/lab2/Input.txt");
+    ifstream fin("Input.txt");
     if (!fin){
             cout << endl<< "Error, file not found"<< endl;
             return 1;
@@ -39,7 +39,7 @@ int main(){
     for (int i=0;i<n;i++) fin >>k[i];
     Vector N(k,n);
     fin.close();
-    ofstream fout("/Users/mariazabrodina/Documents/2 семестр/lab2/lab2/Output.txt");
+    ofstream fout("Output.txt");
     fout <<endl;
     Vector N1;
     double f=rand()%1000/10;
