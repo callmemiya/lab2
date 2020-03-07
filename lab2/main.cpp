@@ -28,28 +28,24 @@ istream & operator>>(istream&in,Vector& R2){
 }
 int main(){
     int n;
-    ifstream fin("Input.txt");
+    ifstream fin("/Users/mariazabrodina/Documents/2 семестр/lab2/lab2/Input.txt");
     if (!fin){
             cout << endl<< "Error, file not found"<< endl;
             return 1;
        }
     fin>>n;
+    cout <<n;
     double *k=new double[n];
-    for (int i=0;i<n;i++){
-        fin>>k[i];
-    }
-    fin.close();
-    ofstream fout("Output.txt");
+    for (int i=0;i<n;i++) fin >>k[i];
     Vector N(k,n);
-    for (int i=0;i<n;i++){
-        fout <<N[i];
-    }
+    fin.close();
+    ofstream fout("/Users/mariazabrodina/Documents/2 семестр/lab2/lab2/Output.txt");
     fout <<endl;
     Vector N1;
     double f=rand()%1000/10;
     N1=operator*(N,f);
-    fout <<N1;
+    fout << N1;
     fout.close();
-    return 0; 
+    return 0;
 }
 
